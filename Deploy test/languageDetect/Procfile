@@ -1,0 +1,1 @@
+web: gunicorn languageDetect.wsgi –log-file -

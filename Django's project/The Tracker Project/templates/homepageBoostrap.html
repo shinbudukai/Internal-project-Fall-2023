@@ -1,0 +1,148 @@
+<!doctype html>
+{% load static %} 
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html lang="en">
+  <head>
+  	<title>Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'homepage/css/style.css'%}">  
+  <link rel="stylesheet" href="{% static 'homepage/css/clock.css'%}">
+
+  
+
+	</head>
+	<body>
+
+	<div class="page">
+      
+    
+    <nav id="colorlib-main-nav" role="navigation">
+      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
+      <div class="js-fullheight colorlib-table">
+        <div class="img" style="background-image: url('{% static "homepage/images/bg3.jpg" %}');"></div> 
+        
+        <div class="colorlib-table-cell js-fullheight">
+          <div class="row no-gutters">
+            <div class="col-md-12 text-center">
+              <h1 class="mb-4"><a href="/" class="logo">The Tracker's features</a></h1>
+              <ul>
+                <li class=active><a href="javascript:window.location = '{% url "index" %}'"><span>Expense Tracker</span></a></li>
+                <li class=active ><a href="javascript:window.location = '{% url "userPage" %}'"><span>Calorie Cal</span></a></li>
+                <li class=active ><a href="javascript:window.location = '{% url "indexTodo" %}'"><span>Notes</span></a></li>
+                <li class=active ><a href="javascript:window.location = '{% url "phonePage" %}'"><span>Phone Tracker</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <div id="colorlib-page">
+      <header>
+      	<div class="container">
+	        <div class="colorlib-navbar-brand">
+	          <a class="colorlib-logo" href="/handleLogout">Log out</a>
+	        </div>
+	        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        </div>
+      </header>
+      
+      <section class="hero-wrap js-fullheight">
+        
+	      <div class="container px-0">    
+	        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+	          <div class="col-md-12 ftco-animate text-center">
+	          	<div class="desc">
+		            <h1>The Tracker</h1>
+                
+<div class="clock right">
+  <div class="clock__second"></div>
+  <div class="clock__minute"></div>
+    <div class="clock__hour"></div>
+  <div class="clock__axis"></div>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+    <section class="clock__indicator"></section>
+</div>
+		            <h3>The project is still being developed</h3>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </section>
+      
+    
+	<script src="{% static 'homepage/js/jquery.min.js' %}"></script>
+  <script src="{% static 'homepage/js/popper.js' %}"></script>
+  <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'homepage/js/main.js' %}"></script>
+  <script src="{% static 'homepage/js/clock.js' %}"></script>
+
+	</body>
+</html>
+

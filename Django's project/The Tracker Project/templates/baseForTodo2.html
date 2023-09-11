@@ -1,0 +1,177 @@
+<!-- todo_list/todo_app/templates/base.html -->
+<!-- Base template -->
+<!doctype html>
+<html lang="en">
+    {%  load static %}
+       
+	
+
+<head>
+ 
+
+    <!-- <nav class="navbar navbar-expand-md navbar-dark">
+		<div class="container">
+
+        <div id="main-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+         <a href="javascript:window.location = '{% url "index" %}'" style="font-size: 20px; padding-right: 0%; ">Back</a>
+         <a href="javascript:window.location = '{% url "homePage" %}'" style="font-size: 30px; padding-left: 35%; color: white;" class="navbar-brand" >The Tracker</a>
+        
+            </ul>
+        </div>
+    </div>
+    </nav> -->
+ 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Simple.css-->
+    <link rel="stylesheet" href="{% static 'todo/css/todoCss.css'%}">   
+    
+    <title>Notes</title>
+     <style>
+        body
+        {background-color:#202020;
+            color: white;
+
+        }
+    </style>
+
+
+<header class="header-area overlay">
+    <link rel="stylesheet" type="text/css" href="{% static 'addmoney.css' %}">
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="{% static 'index/css/indexBoostrap.css'%}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{% static 'homepage/css/style.css'%}">  
+<style>
+    h1 {
+        line-height: 1.5;
+        font-weight: 400;
+        font-family: "Poppins", Arial, sans-serif;
+        color: #ffffff;
+
+     
+    }
+
+    .navbar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0;
+        width: 100%;
+        transition: background 0.6s ease-in;
+        z-index: 99999;
+}
+
+
+
+.navbar-brand{
+font-family: "Poppins", Arial, sans-serif;
+font-size: 16px;
+line-height: 1.8;
+font-weight: 400;
+color: gray; }
+
+</style>
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+    <a href="javascript:window.location = '{% url "homePage" %}'" class="navbar-brand" style="font-size: 30px;">The Tracker</a>
+        
+        <!-- <a href="homepage/" class="navbar-brand">The Tracker</a> -->
+  
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+        </button>
+  
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li><a href="/index" class="nav-item nav-link">Dashboard</a></li>
+            <li><a href="/info" class="nav-item nav-link">Record</a></li>
+            <li><a href="/tables" class="nav-item nav-link">History</a></li>
+            <li class="dropdown">
+              <a href="#" class="nav-item nav-link active" data-toggle="dropdown">Features</a>
+              <div class="dropdown-menu">
+
+                <!-- <li class=active ><a href="javascript:window.location = '{% url "userPage" %}'"><span>Calories Cal</span></a></li>
+            <li class=active ><a href="javascript:window.location = '{% url "indexTodo" %}'"><span>Todo-list</span></a></li>
+            <li class=active ><a href="javascript:window.location = '{% url "index" %}'"><span>API</span></a></li> -->
+
+                <a href="javascript:window.location = '{% url "index" %}'" class="dropdown-item">Expense Tracker</a>
+                <a href="javascript:window.location = '{% url "userPage" %}'" class="dropdown-item">Calories Cal</a>
+                <a href="javascript:window.location = '{% url "indexTodo" %}'" class="dropdown-item">Note</a>
+              </div>
+            </li>
+            
+          </ul>
+
+          <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="/profile">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/handleLogout">Logout</a>
+                </div>
+            </li>
+        </ul> 
+        </div>
+      </div>
+    </nav>
+  
+    <div class="banner">
+      <div class="container">
+        <h1>Expense Tracker</h1>
+        <p>The tracker enables Users can track their expenses and keep an eye on their spending patterns. Users can enter their income and expenses, set budgets, and get notifications when their spending goes over their allotted amount. The feature allows the user to add or edit the expense, also presents the expenses by graph, and displays the history of the user.</p>
+        <a href="#content" class="button button-primary">Learn More</a>
+
+        <div>
+            <h1>Notes</h1>
+        </div>
+        <div>
+            {% block content %}
+            This content will be replaced by different html code for each page.
+            {% endblock %}
+        </div>
+
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <style>
+    body{
+        background:#fafafa
+    }	
+
+    .button-primary {
+position: relative;
+background-color: #131312;
+color: #fff;
+font-size: 1.8rem;
+font-weight: 700;
+transition: color 0.3s ease-in;
+z-index: 1;
+}
+    </style>
+
+</head>
+
+<body>
+
+</body>
+<script src="{% static 'homepage/js/jquery.min.js' %}"></script>
+<script src="{% static 'homepage/js/popper.js' %}"></script>
+<script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'homepage/js/main.js' %}"></script>
+<script src="{% static 'homepage/js/clock.js' %}"></script>
+</html>
+
