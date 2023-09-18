@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-6*#w*e8^fd()iw(*j8^bb))h46*h57)tr3o!f#e3(9lt(xgc#l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["django-test1.azurewebsites.net"]
+ALLOWED_HOSTS = ["*"] #default host
+
+# ALLOWED_HOSTS = ["django-test1.azurewebsites.net"] 
 
 
 # Application definition
@@ -95,9 +97,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django',    #name of the database
-        'USER': 'hieudang@djangotest2',
+        'USER': 'urgverttrl',
         'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': 'djangotest2.postgres.database.azure.com',
+        'HOST': 'django-test1-server.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {"sslmode":"require"},
     }

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-pa&j=j5gfq#2oc4=l1lv-iz!vi__909e*4buld(&(hm+28rp^r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #change this to False when deploy
 
-ALLOWED_HOSTS = ['https://django-test1.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'languageDetect.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',    #name of the database
-#         'USER': 'hieudang@djangotest2',
-#         'PASSWORD': os.getenv("DB_PASSWORD"),
-#         'HOST': 'djangotest2.postgres.database.azure.com',
-#         'PORT': '5432',
-#         'OPTIONS': {"sslmode":"require"},
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django-test1-database',    #name of the database
+        'USER': 'urgverttrl',
+        'PASSWORD': "Shinshinshin321", #O8K54CYVWX3E512V$
+        'HOST': 'django-test1-server.postgres.database.azure.com',
+        'PORT': '5432',
+        'OPTIONS': {"sslmode":"require"},
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
