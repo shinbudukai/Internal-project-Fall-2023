@@ -24,11 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6*#w*e8^fd()iw(*j8^bb))h46*h57)tr3o!f#e3(9lt(xgc#l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"] #default host
+ALLOWED_HOSTS = ["sample-deployment.azurewebsites.net"]
 
-# ALLOWED_HOSTS = ["django-test1.azurewebsites.net"] 
+#ALLOWED_HOSTS = ["*"]
+
+#allows login as admin
+CSRF_TRUSTED_ORIGINS = ["https://sample-deployment.azurewebsites.net"]
 
 
 # Application definition
@@ -60,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #add whitenoise for the css (important)
 ]
 
 ROOT_URLCONF = 'TheTracker.urls'
@@ -95,12 +99,13 @@ WSGI_APPLICATION = 'TheTracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django',    #name of the database
-        'USER': 'urgverttrl',
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': 'django-test1-server.postgres.database.azure.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "tracker",
+        'HOST': "sample-deployment.postgres.database.azure.com" ,
+        'USER': "hieudang",
+        "PORT":"5432",
+        'PASSWORD': "Shinshinshin321" ,
+        "SECRET_KEY" : '123456789',
         'OPTIONS': {"sslmode":"require"},
     }
 }
@@ -141,9 +146,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  #added for Azure deployment
 
 
 

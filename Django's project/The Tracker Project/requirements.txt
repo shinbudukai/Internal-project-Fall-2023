@@ -2,3 +2,12 @@ django
 django-crispy-forms
 whitenoise
 psycopg2-binary
+django-bootstrap5
+django_sass
+maps
+django-bootstrap-v5
+django_scss
+requests
+geopy
+django-filter
+Pillow

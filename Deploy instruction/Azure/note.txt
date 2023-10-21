@@ -1,0 +1,8 @@
+azure web app create (python 3.8)
+azure database server (and create database)
+django settings (debug to False, database, static_root, add whitenoise, admin token)
+add Azure extension in Vscode.
+connection string
+requirements.txt
+
+reference: https://learn.microsoft.com/en-us/training/modules/django-deployment/6-deploy-azure
