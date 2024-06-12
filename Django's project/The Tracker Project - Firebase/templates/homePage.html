@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Tracker</title>
+    <style>
+        /* CSS code for app icons */
+        .app-icons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .app-icon img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+        }
+
+        .app-icon-label {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        /* CSS code for background image */
+        body {
+            background-image:url('https://img.freepik.com/free-photo/woman-checks-results-fitness-training-smartwatch-listens-music-via-headphones-dressed-anorak-poses-blurred_273609-54120.jpg?size=626&ext=jpg&ga=GA1.1.1311792754.1681276606&semt=sph'); /* Replace with your background image path or URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+   <script>
+        window.onload = function() {
+            // Add event listener for icon1
+            var icon1 = document.getElementById("icon1");
+            icon1.addEventListener("click", function() {
+                // JavaScript function to handle click event for icon1
+               // alert("Icon 1 clicked!");
+                // Redirect to next page
+                window.location = '{% url "index" %}'; // Replace with your desired URL
+            });
+
+            // Add event listener for icon2
+            var icon2 = document.getElementById("icon2");
+            icon2.addEventListener("click", function() {
+                // JavaScript function to handle click event for icon2
+                //alert("Icon 2 clicked!");
+                // Redirect to next page
+                window.location = '{% url "userPage" %}'; // Replace with your desired URL
+            });
+
+            // Add event listener for icon3
+            var icon3 = document.getElementById("icon3");
+            icon3.addEventListener("click", function() {
+                // JavaScript function to handle click event for icon3
+                // alert("Icon 3 clicked!");
+                // Redirect to next page
+                window.location = '{% url "indexTodo" %}'; // Replace with your desired URL
+            });
+
+            // Add event listener for icon4
+            var icon4 = document.getElementById("icon4");
+            icon4.addEventListener("click", function() {
+                // JavaScript function to handle click event for icon4
+                alert("Icon 4 clicked!");
+                // Redirect to next page
+                window.location.href = "new2.html"; // Replace with your desired URL
+            });
+        }
+    </script>
+</head>
+<body>
+{% load static %}
+    <h1>The Tracker</h1>
+    <div class="app-icons-container">
+        <div class="app-icon">
+            <img src="https://www.wellybox.com/wp-content/uploads/2021/01/6-business-expense-tracker.jpg" id="icon1" onclick="icon1Clicked();" alt="App Icon 1">
+            <div class="app-icon-label">Expense Tracker</div>
+        </div>
+        <div class="app-icon">
+            <img src="https://media.istockphoto.com/id/1224541424/photo/calculate-expensive-food-spending-costs-counting-calories-and-weight-loss-program-concept.jpg?s=612x612&w=0&k=20&c=PwSSo-csHZgtqSR8feis6ryjwWUZZu0-x3fn-dQAL3s=" id="icon2" onclick="icon2Clicked();" alt="App Icon 2">
+            <div class="app-icon-label">Calorie Calculator</div>
+        </div>
+        <div class="app-icon">
+            <img src="https://imageio.forbes.com/specials-images/dam/imageserve/1092571024/0x0.jpg?format=jpg&width=1200" id="icon3" onclick="icon3Clicked();" alt="App Icon 3">
+            <div class="app-icon-label">To-Do List</div>
+        </div>
+        <div class="app-icon">
+            <img src="https://preview.redd.it/employee-management-system-employee-management-system-demo-v0-oykl89innyda1.jpg?width=1280&format=pjpg&auto=webp&s=9afaaff70cca0b51cc06d3a6314cacc0dd02eb39" id="icon4"onclick="icon4Clicked();" alt="App Icon 4">
+            <div class="app-icon-label">Employment Management System</div>
+        </div>
+    </div>
+</body>
+</html>

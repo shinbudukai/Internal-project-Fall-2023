@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% block content %}
+<head> 
+
+
+
+</head>
+<h3>Total number of items consumed today: {{cnt}}</h3>
+
+<div class="today">
+	<div class="flex-box-row">
+		<h3>Calorie Limit: 2000</h3>
+		<h3>Total Calories Consumed: {{totalCalories}}</h3>
+		<h3>Left: {{ CalorieLeft }}</h3>
+	</div>
+	
+    <div class="card">
+        <table class=" table table-bordered table-dark table-hover">
+            <tr>
+                <th>Food Item</th>
+                <th>Calorie</th>
+                <th>Carbs</th>
+                <th>Fats</th>
+                <th>Protien</th>
+            </tr>
+            {% for food in foodlist %}
+            <tr>
+                <td>{{food.name}}</td>
+                <td> {{food.calorie}}</td>
+                <td> {{food.carbohydrate}}</td>
+                <td> {{food.fats}}</td>
+				<td> {{food.protein}}</td>
+			</tr>
+            {% endfor %}
+        </table>
+	</div>
+	<form action="{% url 'addFooditem' %}" method="POST">
+		{%csrf_token%}
+		<button type="submit" class="button-primary"> Add Food
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+	</form> 
+</div>
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+				{{myfilter.form}}
+		    <button class="button-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+<hr>
+<h3>Available items:</h3>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-bordered table-dark table-hover">
+				<tr>
+					<th>Food Item</th>
+					<th>Calorie</th>
+					<th>Carbs</th>
+					<th>Fats</th>
+					<th>Protien</th>
+				</tr>
+				{% for food in fooditem %}
+				<tr>
+					<td>{{food.name}}</td>
+					<td> {{food.calorie}}</td>
+					<td> {{food.carbohydrate}}</td>
+                    <td> {{food.fats}}</td>
+                    <td> {{food.protein}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

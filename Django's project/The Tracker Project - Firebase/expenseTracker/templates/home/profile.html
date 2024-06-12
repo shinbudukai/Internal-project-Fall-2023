@@ -1,0 +1,302 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+
+        <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}"> 
+
+        <header class="header-area overlay">
+            <link rel="stylesheet" type="text/css" href="{% static 'addmoney.css' %}">
+            <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    
+            
+        <link rel="stylesheet" href="{% static 'index/css/indexBoostrap.css'%}">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="{% static 'homepage/css/style.css'%}">  
+        <style>
+            h1 {
+                line-height: 1.5;
+                font-weight: 400;
+                font-family: "Poppins", Arial, sans-serif;
+                color: #ffffff;
+    
+             
+            }
+    
+            .navbar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding: 0;
+                width: 100%;
+                transition: background 0.6s ease-in;
+                z-index: 99999;
+    }
+    
+    
+    
+    .navbar-brand{
+        font-family: "Poppins", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 400;
+      color: gray; }
+
+      body{
+                background:#fafafa
+            }	
+    
+            .button-primary {
+      position: relative;
+      background-color: #131312;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      transition: color 0.3s ease-in;
+      z-index: 1;
+    }
+    
+        </style>
+            <nav class="navbar navbar-expand-md navbar-dark">
+              <div class="container">
+            <a href="javascript:window.location = '{% url "homePage" %}'" class="navbar-brand" style="font-size: 30px;">The Tracker</a>
+                
+                <!-- <a href="homepage/" class="navbar-brand">The Tracker</a> -->
+          
+                <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+                  <span class="menu-icon-bar"></span>
+                  <span class="menu-icon-bar"></span>
+                  <span class="menu-icon-bar"></span>
+                </button>
+          
+                <div id="main-nav" class="collapse navbar-collapse">
+                  <ul class="navbar-nav ml-auto">
+                    <li><a href="/index" class="nav-item nav-link">Dashboard</a></li>
+                    <li><a href="/info" class="nav-item nav-link">Record</a></li>
+
+                    <li class="dropdown">
+                      <a href="#" class="nav-item nav-link" data-toggle="dropdown">Features</a>
+                      <div class="dropdown-menu">
+    
+                        <!-- <li class=active ><a href="javascript:window.location = '{% url "userPage" %}'"><span>Calories Cal</span></a></li>
+                    <li class=active ><a href="javascript:window.location = '{% url "indexTodo" %}'"><span>Todo-list</span></a></li>
+                    <li class=active ><a href="javascript:window.location = '{% url "index" %}'"><span>API</span></a></li> -->
+    
+                        <a href="javascript:window.location = '{% url "index" %}'" class="dropdown-item">Expense Tracker</a>
+                        <a href="javascript:window.location = '{% url "userPage" %}'" class="dropdown-item">Calorie Cal</a>
+                        <a href="javascript:window.location = '{% url "indexTodo" %}'" class="dropdown-item">Note</a>
+                        <a href="javascript:window.location = '{% url "phonePage" %}'" class="dropdown-item">Phone Tracker</a>
+                      </div>
+                    </li>
+                    
+                  </ul>
+    
+                  <ul class="navbar-nav ml-auto ml-md-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle  active" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="/profile">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 style="color: #fff; text-align: center;">Logged in as: {{request.user.username}}</h6>
+                            <a class="dropdown-item" href="/handleLogout">Logout</a>
+                        </div>
+                    </li>
+                </ul> 
+                </div>
+              </div>
+            </nav>
+          
+            <div class="banner" style="text-align: left; color: gray; padding-top: 0%;">
+              <div class="container " style="padding-left: 15%;">
+                <h1 >Edit Profile</h1>
+                <p>Change profile's information.</p>
+              </div>
+              <div class="container emp-profile">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="profile-img">
+                                <img src="#" alt=""/>
+                                <br>
+                                <div class="file btn btn-lg btn-primary">
+                                    Change Photo
+                                    <input type="file" name="file"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-head">
+                                        <h5>
+                                             {{ user }}
+                                        </h5>
+                                        <h6>
+                                             {{ user.userprofile.profession }}
+                                        </h6>
+                                        {% comment %} <p class="proile-rating">RANKINGS : <span>8/10</span></p> {% endcomment %}
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        {% comment %} <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a> {% endcomment %}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            {% comment %} <input type="submit" class="profile-edit-btn " name="btnAddMore"  value"edit"> {% endcomment %}
+                            {% comment %} {% for x in add %} {% endcomment %}
+                            <div id="container">
+                            <button type="submit" class="profile-edit-btn button-primary" name="btnAddMore"><a href="{% url 'profile_edit' user.id%} "> Edit </a></button>
+                            {% comment %} <br><button type="submit"  name="btnAddMore"><a href="/index/ "> home</a></button> {% endcomment %}
+                            {% comment %} {% endfor %} {% endcomment %}
+                            </div>
+                        </div>
+                        </div>
+    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="profile-work">
+                                {% comment %} <p>WORK LINK</p>
+                                <a href="">Website Link</a><br/>
+                                <a href="">Bootsnipp Profile</a><br/>
+                                <a href="">Bootply Profile</a>
+                                <p>SKILLS</p>
+                                <a href="">Web Designer</a><br/>
+                                <a href="">Web Developer</a><br/>
+                                <a href="">WordPress</a><br/>
+                                <a href="">WooCommerce</a><br/>
+                                <a href="">PHP, .Net</a><br/> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="tab-content profile-tab" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>User Id</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Name</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user.first_name }} {{ user.last_name }} </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Email</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user.email }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Savings</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user.userprofile.Savings}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Income</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user.userprofile.income}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Profession</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>{{ user.userprofile.profession }} </p>
+                                                </div>
+                                            </div>
+                                </div>
+                                {% comment %} <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Experience</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Expert</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Hourly Rate</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>10$/hr</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Total Projects</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>230</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>English Level</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Expert</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Availability</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>6 months</p>
+                                                </div>
+                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Your Bio</label><br/>
+                                            <p>Your detail description</p>
+                                        </div>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
+                </div>
+
+
+
+            </div>
+          </header>
+          
+          <main>
+      
+        
+</head>
+    <body >
+        <script src="{% static 'homepage/js/jquery.min.js' %}"></script>
+        <script src="{% static 'homepage/js/popper.js' %}"></script>
+        <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'homepage/js/main.js' %}"></script>
+
+	</body>
+</html>
+        

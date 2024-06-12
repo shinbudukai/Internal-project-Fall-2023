@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load static%}
+{% block content %}
+<head>
+    <style>
+        form{
+            border:1px solid black;
+            margin:auto;
+            padding: 40px;
+        }
+    </style>
+</head>
+<div> 
+<form action="" method="POST">  <!--action="{% url 'userPage' %}"-->
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="button-primary " value="submit">
+   <!--<a href="{% url 'userPage' %}"></a>--> 
+</form>
+</div>
+{% endblock %}

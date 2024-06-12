@@ -1,0 +1,16 @@
+django
+django-crispy-forms
+whitenoise
+psycopg2-binary
+django-bootstrap-v5
+django-sass
+django-scss
+geopy
+maps
+numpy
+pillow
+gunicorn
+requests
+django-filter
+cryptography
+cookiecutter

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Phone checking</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+
+    {%  load static %}
+
+	<header class="header-area overlay">
+        <link rel="stylesheet" type="text/css" href="{% static 'addmoney.css' %}">
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+		
+	<link rel="stylesheet" href="{% static 'index/css/indexBoostrap.css'%}">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'homepage/css/style.css'%}">  
+
+	<link rel="stylesheet" href="{% static 'table/css/table.css'%}">  
+	<!-- <link rel="stylesheet" href="{% static 'table/css/bootstrap.min.css'%}">   -->
+
+
+	<style>
+		h1 {
+			line-height: 1.5;
+    		font-weight: 400;
+    		font-family: "Poppins", Arial, sans-serif;
+   		 color: #ffffff;
+
+		 
+		}
+
+		.navbar {
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding: 0;
+			width: 100%;
+			transition: background 0.6s ease-in;
+			z-index: 99999;
+}
+
+
+
+.navbar-brand{
+	font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: gray; }
+
+.map{
+    position: inherit !important;
+    width: 1110px;
+    height: 400px;
+}
+
+#map li[style] {
+    position: relative !important;
+    width: 1110px;
+    height: 400px;
+}
+
+.mapboxgl-canvas{
+
+    position: inherit !important;
+    width: 1110px;
+    height: 400px;
+    margin-top: 3%;
+}
+
+
+
+
+
+	</style>
+		<nav class="navbar navbar-expand-md navbar-dark">
+		  <div class="container">
+		<a href="javascript:window.location = '{% url "homePage" %}'" class="navbar-brand" style="font-size: 30px;">The Tracker</a>
+			
+			<!-- <a href="homepage/" class="navbar-brand">The Tracker</a> -->
+	  
+			<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+			  <span class="menu-icon-bar"></span>
+			  <span class="menu-icon-bar"></span>
+			  <span class="menu-icon-bar"></span>
+			</button>
+	  
+			<div id="main-nav" class="collapse navbar-collapse">
+			  <ul class="navbar-nav ml-auto">
+				<li><a href="/index" class="nav-item nav-link">Dashboard</a></li>
+				<li><a href="/info" class="nav-item nav-link">Record</a></li>
+				<li class="dropdown">
+				  <a href="#" class="nav-item nav-link active" data-toggle="dropdown">Features</a>
+				  <div class="dropdown-menu">
+
+					<!-- <li class=active ><a href="javascript:window.location = '{% url "userPage" %}'"><span>Calories Cal</span></a></li>
+                <li class=active ><a href="javascript:window.location = '{% url "indexTodo" %}'"><span>Todo-list</span></a></li>
+                <li class=active ><a href="javascript:window.location = '{% url "index" %}'"><span>API</span></a></li> -->
+
+					<a href="javascript:window.location = '{% url "index" %}'" class="dropdown-item">Expense Tracker</a>
+					<a href="javascript:window.location = '{% url "userPage" %}'" class="dropdown-item">Calorie Cal</a>
+					<a href="javascript:window.location = '{% url "indexTodo" %}'" class="dropdown-item">Note</a>
+                    <a href="javascript:window.location = '{% url "phonePage" %}'" class="dropdown-item">Phone Tracker</a>
+				  </div>
+				</li>
+				
+			  </ul>
+
+			  <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+							
+							
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <div class="dropdown-divider"></div>
+						<h6 style="color: #fff; text-align: center;">Logged in as: {{request.user.username}}</h6>
+                        <a class="dropdown-item" href="/handleLogout">Logout</a>
+                    </div>
+                </li>
+            </ul> 
+			</div>
+		  </div>
+		</nav>
+	  
+		<div class="banner">
+		  <div class="container">
+			<h1>Phone Number Checking</h1>
+			<p>This feature allows you to validate phone numbers in over different countries and checks whether a phone number is valid and active.</p>
+
+
+
+            <div>   
+                Location: {{ location }}
+            </div>
+        
+            <div>   
+                Phone: {{ format }}
+            </div>
+        
+            <div>   
+                Timezones: {{ timezones }}
+            </div>
+
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="phoneNumber" class="bt1 button-primary">
+                <button class="bt1 button-primary">Find</button>
+            </form>
+        
+            <div id='map' class='map'></div>
+            <script>
+             mapboxgl.accessToken = '{{ mapbox_access_token }}';
+             var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v10',
+              center: {{center}},
+              zoom: 9,
+             });
+        
+            </script>
+
+
+
+		  </div>
+		</div>
+	  </header>
+	  
+	  <main>
+		<style>
+		body{
+			background:#fafafa
+		}	
+
+		.button-primary {
+  position: relative;
+  background-color: #2b3035;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in;
+  z-index: 1;
+}
+
+.button-primary2 {
+  position: relative;
+  background-color: #1e571e;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in;
+  z-index: 1;
+  margin-top: -5%;
+}
+
+.button-primary3 {
+  position: relative;
+  background-color: #b12525;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in;
+  z-index: 1;
+  margin-top: -5%;
+}
+
+/* .a:{
+	color: white;
+}
+
+.a:hover{
+	color: rgb(2, 2, 2);
+} */
+		</style>
+
+</head>
+
+<body>
+
+    <!-- <div>   
+        Location: {{ location }}
+    </div>
+
+    <div>   
+        Phone: {{ format }}
+    </div>
+
+    <div>   
+        Timezones: {{ timezones }}
+    </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="phoneNumber">
+        <button>Find</button>
+    </form>
+
+    <div id='map' width="50%" style='height:400px; padding-bottom: 0%;'></div>
+    <script>
+     mapboxgl.accessToken = '{{ mapbox_access_token }}';
+     var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: {{center}},
+      zoom: 9,
+     });
+
+    </script> -->
+    <script src="{% static 'homepage/js/jquery.min.js' %}"></script>
+    <script src="{% static 'homepage/js/popper.js' %}"></script>
+    <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'homepage/js/main.js' %}"></script>
+    
+
+</body>
+
+
+</html>

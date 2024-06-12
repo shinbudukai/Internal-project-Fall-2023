@@ -1,0 +1,196 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+				<link href="css/addmoney.css" rel="stylesheet" />
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title><h1>My Wallet</h1></title>
+        <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'addmoney.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+
+    <header class="header-area overlay">
+      <link rel="stylesheet" type="text/css" href="{% static 'addmoney.css' %}">
+      <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+  
+<link rel="stylesheet" href="{% static 'index/css/indexBoostrap.css'%}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{% static 'homepage/css/style.css'%}">  
+
+<link rel="stylesheet" href="{% static 'table/css/table.css'%}">  
+
+
+
+<style>
+  h1 {
+    line-height: 1.5;
+      font-weight: 400;
+      font-family: "Poppins", Arial, sans-serif;
+      color: #ffffff;
+
+   
+  }
+
+  .navbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    width: 100%;
+    transition: background 0.6s ease-in;
+    z-index: 99999;
+}
+
+
+
+.navbar-brand{
+font-family: "Poppins", Arial, sans-serif;
+font-size: 16px;
+line-height: 1.8;
+font-weight: 400;
+color: gray; }
+
+.button-primary2 {
+  position: relative;
+  background-color: gray;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in;
+  z-index: 1;
+}
+
+
+</style>
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+  <a href="javascript:window.location = '{% url "homePage" %}'" class="navbar-brand" style="font-size: 30px;">The Tracker</a>
+    
+    <!-- <a href="homepage/" class="navbar-brand">The Tracker</a> -->
+  
+    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+      <span class="menu-icon-bar"></span>
+      <span class="menu-icon-bar"></span>
+      <span class="menu-icon-bar"></span>
+    </button>
+  
+    <div id="main-nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+      <li><a href="/index" class="nav-item nav-link active">Dashboard</a></li>
+      <li><a href="/info" class="nav-item nav-link">Record</a></li>
+
+      <li class="dropdown">
+        <a href="#" class="nav-item nav-link" data-toggle="dropdown">Features</a>
+        <div class="dropdown-menu">
+
+        <!-- <li class=active ><a href="javascript:window.location = '{% url "userPage" %}'"><span>Calories Cal</span></a></li>
+              <li class=active ><a href="javascript:window.location = '{% url "indexTodo" %}'"><span>Todo-list</span></a></li>
+              <li class=active ><a href="javascript:window.location = '{% url "index" %}'"><span>API</span></a></li> -->
+
+        <a href="javascript:window.location = '{% url "index" %}'" class="dropdown-item">Expense Tracker</a>
+        <a href="javascript:window.location = '{% url "userPage" %}'" class="dropdown-item">Calorie Cal</a>
+        <a href="javascript:window.location = '{% url "indexTodo" %}'" class="dropdown-item">Note</a>
+        <a href="javascript:window.location = '{% url "phonePage" %}'" class="dropdown-item">Phone Tracker</a>
+        </div>
+      </li>
+      
+      </ul>
+
+      <ul class="navbar-nav ml-auto ml-md-0">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                      <a class="dropdown-item" href="#">Settings</a>
+                      <a class="dropdown-item" href="/profile">Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <h6 style="color: #fff; text-align: center;">Logged in as: {{request.user.username}}</h6>
+                      <a class="dropdown-item" href="/handleLogout">Logout</a>
+                  </div>
+              </li>
+          </ul> 
+    </div>
+    </div>
+  </nav>
+  
+  <div class="banner">
+    <div class="container">
+    <h1>Expense Tracker Editor</h1>
+          <main>
+              <div class="container2">
+                  <div class="row justify-content-center">
+                      <div class="col-lg-5">
+                          <div class="card shadow-lg border-0 rounded-lg mt-5" style="color: black;">
+                          <div> 
+                             <div class="card-header"><h3 class="text-center font-weight-light my-4" style="font-size: 20px;">My Wallet</h3></div> 
+                              <form method="post" action="{% url 'addmoney_update' addmoney_info.id %}" style="padding-bottom: 5%;">
+                              {% csrf_token %}
+            <br>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="add_money" id="add_money" value="{{addmoney_info.add_money}}" checked required>
+            <label class="form-check-label" for="add_money" style="padding-left: 3%;"> Expense  
+            </div>
+            </label>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="add_money" id="add_money" value="{{addmoney_info.add_money}}" checked required>
+            <label class="form-check-label" for="add_money" style="padding-left: 3%;">Income</label>
+            </div>
+                            <!--<form class="r1" method="post" action="\addmoney_submission\">
+                            {% csrf_token %}
+What you want to add?<br>
+<input type="radio" name="add_money" value="Expense">
+<label for="Expense">Expense</label>
+<input type="radio" name="add_money" value="Income">
+<label for="Income">Income</label><br>-->
+<label for="quantity">Amount:</label><br>
+<input type="number" name="quantity" value="{{addmoney_info.quantity}}"required><br>
+<br>
+<label>
+Expense Date:
+<input type="date" name="Date" value="{{addmoney_info.Date}}">
+</label><br>
+<div class="f1">
+Select category-<br>
+<select class="Category" name="Category" value="{{addmoney_info.Category}}" required><br>
+<option value="Food">Food</option>
+<option value="Travel">Travel</option>
+<option value="Shopping">shopping</option>
+<option value="Necessities">Necessities</option>
+<option value="Entertainment">Entertainment</option>
+<option value="Others">Others</option>
+
+</select><br>
+                            </div>
+ <td><a><button type="submit" class="button button-primary2"> Save </button></a></td>
+<!--<input type="button" class="b2"  onclick="location.href='/addmoney'" value="submit!">-->
+
+
+                            </div>
+                
+                    </div>
+                </div></div></main></div></div></form>
+
+    </div>
+  </div>
+  </header>
+
+  <script src="{% static 'homepage/js/jquery.min.js' %}"></script>
+  <script src="{% static 'homepage/js/popper.js' %}"></script>
+  <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'homepage/js/main.js' %}"></script>
+
+
+
+
+       
+    </body>
+</html>

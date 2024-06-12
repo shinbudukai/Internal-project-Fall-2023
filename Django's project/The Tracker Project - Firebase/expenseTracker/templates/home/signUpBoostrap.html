@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %} 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'signup/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'signup/css/style.css'%}">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <form method="POST" class="appointment-form" id="appointment-form" action="/handleSignup/">
+                {% csrf_token %}
+                <h2>Sign Up</h2>
+                <div class="form-group-1">
+                    <input type="text"  id="uname" name="uname" placeholder="User Name" required />
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required />
+                    <input type="text" name="lname" id="lname" placeholder="Last Name" required />
+                    <div class="select-list">
+                        <select name="profession" id="profession">
+                            <option slected value="">Profession</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Business">Business</option>
+                            <option value="Student">Student</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <input type="text" id="income" name="income" placeholder="Income" required />
+                    <input type="text" id="Savings"  name="Savings" placeholder="Saving" required />
+                    <input type="password" id="pass1" name="pass1" placeholder="Password" required />
+                    <input type="password" id="pass2" name="pass2" placeholder="Confirm Password" required />
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                    
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree to the  <a href="#" class="term-service">Terms and Conditions</a></label>
+                </div>
+                <div class="form-submit">
+                    <input type="submit" name="submit" id="submit" class="submit" value="Sign Up" />
+                    <div class="card-footer text-center">
+                        <div class="small"><a href="/">Have an account? Go to login</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'signup/vendor/jquery/jquery.min.js' %}"></script>
+    
+    <script src="{% static 'signup/js/jquery.min.js' %}"></script>
+</body>
+</html>
